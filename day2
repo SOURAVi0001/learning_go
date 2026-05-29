@@ -1,0 +1,1320 @@
+# Variables & Constants in Go 🔥
+
+(VERY IMPORTANT FOUNDATION)
+
+---
+
+# 1. Variables in Go 📦
+
+Variable = data store karne ke liye memory container.
+
+Example:
+
+```go id="7b5i3q"
+var name string = "Sourav"
+```
+
+---
+
+# Syntax
+
+```go id="gm2xvf"
+var variableName dataType = value
+```
+
+---
+
+# Example
+
+```go id="ybgs8v"
+var age int = 21
+var city string = "Delhi"
+```
+
+---
+
+# Short Declaration `:=` ⚡
+
+Most used in Go.
+
+```go id="z3t6zn"
+name := "Sourav"
+age := 21
+```
+
+Compiler automatically type detect karta hai.
+
+---
+
+# var vs := 🔥
+
+| var                  | :=                |
+| -------------------- | ----------------- |
+| explicit declaration | short declaration |
+| global + local       | only local        |
+| type optional        | type auto infer   |
+| longer               | shorter           |
+
+---
+
+# Example
+
+## Using var
+
+```go id="x1n38i"
+var name string = "Go"
+```
+
+---
+
+## Using :=
+
+```go id="fg0wj7"
+name := "Go"
+```
+
+---
+
+# Important ⚠️
+
+`:=` function ke bahar use nahi hota.
+
+❌ Invalid:
+
+```go id="r0cm0s"
+name := "Sourav"
+```
+
+outside main/function.
+
+---
+
+# Correct
+
+```go id="n7k3tw"
+var name = "Sourav"
+```
+
+for global scope.
+
+---
+
+# Multiple Variables
+
+```go id="7xq0bh"
+var a, b, c int = 1, 2, 3
+```
+
+---
+
+## Short Style
+
+```go id="n90xqf"
+x, y := 10, 20
+```
+
+---
+
+# Zero Values 🔥
+
+Agar value assign nahi ki:
+Go default value deta hai.
+
+| Type   | Zero Value |
+| ------ | ---------- |
+| int    | 0          |
+| float  | 0.0        |
+| string | ""         |
+| bool   | false      |
+
+---
+
+# Example
+
+```go id="zy3jvz"
+package main
+
+import "fmt"
+
+func main() {
+
+    var age int
+    var name string
+    var isLogin bool
+
+    fmt.Println(age)
+    fmt.Println(name)
+    fmt.Println(isLogin)
+}
+```
+
+---
+
+# Output
+
+```text id="8e9iwf"
+0
+
+false
+```
+
+(string empty print hoga)
+
+---
+
+# Constants 🔒
+
+Constant ki value change nahi hoti.
+
+---
+
+# Syntax
+
+```go id="j38w5y"
+const pi = 3.14
+```
+
+---
+
+# Example
+
+```go id="4bw3l0"
+const company = "Google"
+```
+
+---
+
+# Invalid ❌
+
+```go id="3h0jcx"
+company = "Amazon"
+```
+
+Constants modify nahi hote.
+
+---
+
+# Typed vs Untyped Constants
+
+## Typed
+
+```go id="mgs6l5"
+const age int = 21
+```
+
+---
+
+## Untyped
+
+```go id="76xqtw"
+const age = 21
+```
+
+Go automatically manage karta hai.
+
+---
+
+# iota 🔥🔥🔥 (VERY IMPORTANT)
+
+Auto incrementing constants.
+
+---
+
+# Example
+
+```go id="wfdmto"
+const (
+    Sunday = iota
+    Monday
+    Tuesday
+    Wednesday
+)
+```
+
+---
+
+# Values
+
+```text id="7mbzn0"
+Sunday = 0
+Monday = 1
+Tuesday = 2
+Wednesday = 3
+```
+
+---
+
+# Real Usage of iota
+
+Used for:
+
+* enums
+* states
+* statuses
+
+---
+
+# Example
+
+```go id="cq1y6w"
+const (
+    Pending = iota
+    Approved
+    Rejected
+)
+```
+
+---
+
+# Scope in Go 🌍
+
+Scope = variable kaha accessible hai.
+
+---
+
+# Local Scope
+
+Inside function only.
+
+```go id="q5q6q5"
+func main() {
+    age := 21
+}
+```
+
+---
+
+# Global Scope
+
+Outside function.
+
+```go id="3h9pme"
+var appName = "MyApp"
+```
+
+---
+
+# Shadowing ⚠️
+
+Inner variable outer variable ko hide kar deta hai.
+
+---
+
+# Example
+
+```go id="6s57ij"
+package main
+
+import "fmt"
+
+var name = "Global"
+
+func main() {
+
+    name := "Local"
+
+    fmt.Println(name)
+}
+```
+
+Output:
+
+```text id="m5uy38"
+Local
+```
+
+Local variable ne global ko shadow kar diya.
+
+---
+
+# Full Example 🚀
+
+```go id="wq1bn1"
+package main
+
+import "fmt"
+
+const company = "Google"
+
+func main() {
+
+    name := "Sourav"
+    var age int = 21
+
+    fmt.Println(name)
+    fmt.Println(age)
+    fmt.Println(company)
+}
+```
+
+---
+
+# Important Interview Questions 🎯
+
+## Q1. Difference between var and const?
+
+| var           | const              |
+| ------------- | ------------------ |
+| changeable    | fixed              |
+| runtime value | compile-time fixed |
+
+---
+
+## Q2. What is iota?
+
+Auto increment constant generator.
+
+---
+
+## Q3. Can := be used globally?
+
+❌ No.
+
+---
+
+# Best Practice 💡
+
+Use:
+
+```go id="dzrr5n"
+:= 
+```
+
+inside functions.
+
+Use:
+
+```go id="0q8jcr"
+const
+```
+
+for fixed values.
+
+---
+
+# Next Most Important Topic 🚀
+
+Now cover:
+
+1. Arrays
+2. Slices 🔥🔥🔥
+3. Maps
+4. Functions
+
+Most important for backend + interviews:
+
+```text id="2yl0jk"
+Slices > Maps > Structs
+```
+# Arrays in Go 🔥
+
+Arrays interview me kam aur Slices zyada use hote hain, lekin Arrays samajhna zaroori hai kyunki Slices Arrays ke upar hi bane hote hain.
+
+---
+
+# What is an Array?
+
+Array = Same data type ke fixed-size collection.
+
+```text
+[10, 20, 30, 40, 50]
+```
+
+Yaha:
+
+* Type = int
+* Size = 5 (fixed)
+
+---
+
+# Declare an Array
+
+```go
+var nums [5]int
+```
+
+Memory:
+
+```text
+[0 0 0 0 0]
+```
+
+Go automatically zero values fill kar deta hai.
+
+---
+
+# Initialize Array
+
+```go
+var nums [5]int = [5]int{10,20,30,40,50}
+```
+
+or
+
+```go
+nums := [5]int{10,20,30,40,50}
+```
+
+---
+
+# Access Elements
+
+Index starts from 0.
+
+```go
+nums := [5]int{10,20,30,40,50}
+
+fmt.Println(nums[0])
+fmt.Println(nums[2])
+```
+
+Output:
+
+```text
+10
+30
+```
+
+---
+
+# Update Elements
+
+```go
+nums[1] = 100
+```
+
+Result:
+
+```text
+[10 100 30 40 50]
+```
+
+---
+
+# Length of Array
+
+```go
+fmt.Println(len(nums))
+```
+
+Output:
+
+```text
+5
+```
+
+---
+
+# Array Type Depends on Size ⚠️
+
+Very Important
+
+```go
+a := [3]int{1,2,3}
+b := [4]int{1,2,3,4}
+```
+
+These are DIFFERENT TYPES.
+
+```text
+[3]int ≠ [4]int
+```
+
+Go treats them as separate types.
+
+---
+
+# Compiler Count Size Automatically
+
+```go
+nums := [...]int{10,20,30,40}
+```
+
+Go counts size automatically.
+
+Output Type:
+
+```go
+[4]int
+```
+
+---
+
+# Loop Through Array
+
+## Traditional Loop
+
+```go
+nums := [5]int{10,20,30,40,50}
+
+for i:=0;i<len(nums);i++{
+    fmt.Println(nums[i])
+}
+```
+
+---
+
+## Range Loop 🔥
+
+Most Used
+
+```go
+nums := [5]int{10,20,30,40,50}
+
+for index,value := range nums{
+    fmt.Println(index,value)
+}
+```
+
+Output:
+
+```text
+0 10
+1 20
+2 30
+3 40
+4 50
+```
+
+---
+
+# Ignore Index
+
+```go
+for _, value := range nums {
+    fmt.Println(value)
+}
+```
+
+`_` means "I don't need this value".
+
+---
+
+# Arrays are Value Types ⚠️
+
+This is a famous interview question.
+
+```go
+a := [3]int{1,2,3}
+
+b := a
+
+b[0] = 100
+
+fmt.Println(a)
+fmt.Println(b)
+```
+
+Output:
+
+```text
+[1 2 3]
+[100 2 3]
+```
+
+Why?
+
+Because array copy ho gaya.
+
+---
+
+# Memory Visualization
+
+```text
+a --> [1 2 3]
+
+b --> [1 2 3]
+```
+
+Separate copies.
+
+---
+
+# Multi-Dimensional Arrays
+
+```go
+matrix := [2][3]int{
+    {1,2,3},
+    {4,5,6},
+}
+```
+
+Output:
+
+```text
+[
+ [1 2 3]
+ [4 5 6]
+]
+```
+
+---
+
+# Real Example
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+    scores := [5]int{90,85,80,95,100}
+
+    total := 0
+
+    for _,score := range scores {
+        total += score
+    }
+
+    fmt.Println("Total:", total)
+}
+```
+
+Output:
+
+```text
+Total: 450
+```
+
+---
+
+# Array Limitations 😭
+
+Suppose:
+
+```go
+nums := [5]int{1,2,3,4,5}
+```
+
+Now you want:
+
+```text
+[1,2,3,4,5,6]
+```
+
+Impossible directly.
+
+Size fixed hai.
+
+Array grow nahi karta.
+
+---
+
+# Why Slices Were Created? 🔥🔥🔥
+
+Arrays ki problem:
+
+❌ Fixed size
+
+Go solution:
+
+✅ Slice
+
+```go
+nums := []int{1,2,3}
+```
+
+Can grow dynamically:
+
+```go
+nums = append(nums,4)
+```
+
+Result:
+
+```text
+[1 2 3 4]
+```
+
+---
+
+# Interview Questions 🎯
+
+### Q1. Array and Slice difference?
+
+| Array      | Slice          |
+| ---------- | -------------- |
+| Fixed size | Dynamic size   |
+| Value type | Reference-like |
+| Less used  | Most used      |
+
+---
+
+### Q2. Are arrays passed by value?
+
+✅ Yes
+
+Complete copy created.
+
+---
+
+### Q3. Can array size change?
+
+❌ No
+
+Fixed at compile time.
+
+---
+
+# Most Important Note 🚀
+
+In real backend development:
+
+```text
+Arrays   -> 5%
+Slices   -> 80%
+Maps     -> 10%
+Others   -> 5%
+```
+
+👉 Next topic should be **Slices**. This is the most important Go topic for interviews, DSA-style coding, APIs, and backend development.
+# Slices in Go 🔥🔥🔥
+
+> Most Important Topic in Go
+
+Agar tum Go backend, interviews, APIs ya microservices karoge, to **Slices har jagah milenge**.
+
+---
+
+# What is a Slice?
+
+Slice = Dynamic Array
+
+Array:
+
+```go
+arr := [5]int{1,2,3,4,5}
+```
+
+Size fixed hai.
+
+Slice:
+
+```go
+nums := []int{1,2,3}
+```
+
+Size grow/shrink ho sakta hai.
+
+---
+
+# Creating a Slice
+
+## Method 1
+
+```go
+nums := []int{10,20,30}
+```
+
+Output:
+
+```text
+[10 20 30]
+```
+
+---
+
+# Length and Capacity
+
+## Length
+
+Number of elements.
+
+```go
+nums := []int{10,20,30}
+
+fmt.Println(len(nums))
+```
+
+Output:
+
+```text
+3
+```
+
+---
+
+## Capacity
+
+Underlying array me available space.
+
+```go
+fmt.Println(cap(nums))
+```
+
+Output:
+
+```text
+3
+```
+
+---
+
+# Slice Internally 🔥
+
+```go
+nums := []int{10,20,30}
+```
+
+Internally:
+
+```text
+Underlying Array
++----+----+----+
+|10  |20  |30  |
++----+----+----+
+
+Slice Header
+Pointer -> Array
+Length = 3
+Capacity = 3
+```
+
+Interview me bahut pucha jata hai.
+
+---
+
+# make() Function
+
+Most common way.
+
+```go
+nums := make([]int, 5)
+```
+
+Output:
+
+```text
+[0 0 0 0 0]
+```
+
+Length:
+
+```go
+len(nums)
+```
+
+Output:
+
+```text
+5
+```
+
+Capacity:
+
+```go
+cap(nums)
+```
+
+Output:
+
+```text
+5
+```
+
+---
+
+# Custom Length and Capacity
+
+```go
+nums := make([]int, 3, 5)
+```
+
+Meaning:
+
+```text
+Length = 3
+Capacity = 5
+```
+
+Visualization:
+
+```text
+[0 0 0 _ _]
+```
+
+---
+
+# Append 🔥🔥🔥
+
+Most important function.
+
+```go
+nums := []int{1,2,3}
+
+nums = append(nums,4)
+
+fmt.Println(nums)
+```
+
+Output:
+
+```text
+[1 2 3 4]
+```
+
+---
+
+# Multiple Append
+
+```go
+nums = append(nums,5,6,7)
+```
+
+Output:
+
+```text
+[1 2 3 4 5 6 7]
+```
+
+---
+
+# Capacity Growth 🚀
+
+```go
+nums := make([]int,0,2)
+
+nums = append(nums,1)
+nums = append(nums,2)
+```
+
+Current:
+
+```text
+Length = 2
+Capacity = 2
+```
+
+Now:
+
+```go
+nums = append(nums,3)
+```
+
+Go new array create karega.
+
+Usually capacity doubles.
+
+```text
+Old Capacity = 2
+New Capacity = 4
+```
+
+---
+
+# Slice from Array
+
+```go
+arr := [5]int{10,20,30,40,50}
+
+slice := arr[1:4]
+```
+
+Result:
+
+```text
+[20 30 40]
+```
+
+---
+
+# Understanding Slicing
+
+```go
+arr[start:end]
+```
+
+Rule:
+
+```text
+start included
+end excluded
+```
+
+Example:
+
+```go
+arr := [5]int{10,20,30,40,50}
+
+fmt.Println(arr[1:4])
+```
+
+Output:
+
+```text
+[20 30 40]
+```
+
+---
+
+# Different Slice Operations
+
+```go
+arr := [5]int{10,20,30,40,50}
+```
+
+---
+
+## First 3 Elements
+
+```go
+arr[:3]
+```
+
+Output:
+
+```text
+[10 20 30]
+```
+
+---
+
+## Last Elements
+
+```go
+arr[2:]
+```
+
+Output:
+
+```text
+[30 40 50]
+```
+
+---
+
+## Full Slice
+
+```go
+arr[:]
+```
+
+Output:
+
+```text
+[10 20 30 40 50]
+```
+
+---
+
+# Slices Share Memory ⚠️
+
+MOST IMPORTANT INTERVIEW QUESTION
+
+```go
+arr := [5]int{10,20,30,40,50}
+
+slice := arr[1:4]
+
+slice[0] = 999
+
+fmt.Println(arr)
+```
+
+Output:
+
+```text
+[10 999 30 40 50]
+```
+
+Why?
+
+Because slice copied nahi hua.
+
+Same underlying array use ho raha hai.
+
+---
+
+# Array vs Slice Memory
+
+## Array
+
+```go
+a := [3]int{1,2,3}
+b := a
+```
+
+Copy created.
+
+---
+
+## Slice
+
+```go
+a := []int{1,2,3}
+b := a
+```
+
+Same memory.
+
+Change one:
+
+```go
+b[0] = 100
+```
+
+Output:
+
+```text
+a => [100 2 3]
+b => [100 2 3]
+```
+
+---
+
+# Copy Slice
+
+Agar actual copy chahiye:
+
+```go
+a := []int{1,2,3}
+
+b := make([]int,len(a))
+
+copy(b,a)
+```
+
+Now separate memory.
+
+---
+
+# Append One Slice into Another
+
+```go
+a := []int{1,2,3}
+b := []int{4,5,6}
+
+a = append(a,b...)
+```
+
+Output:
+
+```text
+[1 2 3 4 5 6]
+```
+
+`...` important hai.
+
+---
+
+# Nil Slice
+
+```go
+var nums []int
+
+fmt.Println(nums)
+```
+
+Output:
+
+```text
+[]
+```
+
+Check:
+
+```go
+fmt.Println(nums == nil)
+```
+
+Output:
+
+```text
+true
+```
+
+---
+
+# Real Backend Example
+
+Suppose database se users aaye:
+
+```go
+users := []string{
+    "Sourav",
+    "Rahul",
+    "Aman",
+}
+```
+
+Add new user:
+
+```go
+users = append(users,"Rohit")
+```
+
+Easy.
+
+Isi liye slices backend me everywhere use hote hain.
+
+---
+
+# Interview Questions 🎯
+
+### Q1. Array vs Slice?
+
+| Array       | Slice          |
+| ----------- | -------------- |
+| Fixed Size  | Dynamic        |
+| Value Type  | Reference-like |
+| Rarely Used | Everywhere     |
+
+---
+
+### Q2. What is Capacity?
+
+Underlying array ki available storage.
+
+---
+
+### Q3. Does Slice copy data?
+
+❌ No
+
+Underlying array share karta hai.
+
+---
+
+### Q4. Most used function?
+
+```go
+append()
+```
+
+---
+
+# Golden Rules 🚀
+
+```text
+len()  -> current elements
+
+cap()  -> available storage
+
+append() -> add elements
+
+make() -> create slices
+
+copy() -> deep copy
+```
+
+---
+
+# Learning Order from Here
+
+```text
+✅ Data Types
+✅ Variables & Constants
+✅ Arrays
+✅ Slices
+
+Next:
+1. Maps 🔥
+2. Functions 🔥
+3. Structs 🔥🔥
+4. Pointers 🔥🔥
+5. Interfaces
+6. Goroutines
+```
+
+👉 **Maps** next cover karo. It's the Go version of HashMap/Dictionary and is heavily used in APIs, JSON handling, caching, and backend development.
